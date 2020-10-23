@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-table.css}" />
+</head>
+<body>
+
+<div class="container">
+    <h1>订单列表</h1>
+    <div class="text-left">
+        <a class="btn btn-info" th:href="@{toAdd}">Add</a>
+		<a class="btn btn-info" th:href="@{drq}">超厉害</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>订单编号</th>
+            <th>订单名称</th>
+            <th>订单价格</th>
+			<th>时间</th>
+			<th>支付方式</th>
+            <th>修改</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="order : ${order}">
+            <td th:text="${order.obh}"></td>
+            <td th:text="${order.oname}"></td>
+			<td th:text="${order.oprice}"></td>
+			<td th:text="${order.odate}"></td>
+			<td th:text="${order.zname}"></td>
+            <td>
+				<a th:href="@{/selOrder(oid=${order.oid})}">修改</a>
+            </td>
+            <td>
+                <a th:href="@{/delOrder(oid=${order.oid})}">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

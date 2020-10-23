@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap-table.css}" />
+</head>
+<body>
+
+<div class="container">
+	<h1>添加员工</h1>
+	<form class="form-horizontal" th:action="@{/saveEmp}" method="post">
+		<input type="hidden" name="eid" th:value="${emp.eid}" />
+		<div class="form-group">
+			<label for="ename" class="col-sm-2 control-label">名称</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="ename"  id="ename" placeholder="ename" th:value="${emp.ename}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="edept" class="col-sm-2 control-label">部门</label>
+			<div class="col-sm-10">
+				<select  class="form-control" name="edept"  id="edept" placeholder="edept" th:value="${emp.edept}">
+					<option  value="0">请选择</option>
+					<option th:selected="${emp.edept==1}" value="1">技术</option>
+					<option th:selected="${emp.edept==2}" value="2">人事</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="cdate" class="col-sm-2 control-label">入职时间</label>
+			<div class="col-sm-10">
+				<input type="date" class="form-control" name="cdate"  id="cdate" placeholder="cdate" th:value="${emp.cdate}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="egw" class="col-sm-2 control-label">岗位</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="egw"  id="egw" placeholder="egw" th:value="${emp.egw}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="ezz" class="col-sm-2 control-label">职责</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="ezz"  id="ezz" placeholder="ezz" th:value="${emp.ezz}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Submit" class="btn btn-info" />
+				<a th:href="@{/orderList}" class="btn btn-info">Back</a>
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

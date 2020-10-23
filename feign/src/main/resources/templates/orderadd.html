@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.css}" />
+	<link rel="stylesheet" th:href="@{/css/bootstrap-table.css}" />
+</head>
+<body>
+
+<div class="container">
+	<h1>添加订单</h1>
+	<form class="form-horizontal" th:action="@{/saveOrder}" method="post">
+		<input type="hidden" name="oid" th:value="${order.oid}" />
+		<div class="form-group">
+			<label for="obh" class="col-sm-2 control-label">订单编号</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="obh"  id="obh" placeholder="obh" th:value="${order.obh}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="oname" class="col-sm-2 control-label">订单名称</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="oname"  id="oname" placeholder="oname" th:value="${order.oname}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="oprice" class="col-sm-2 control-label">订单价格</label>
+			<div class="col-sm-10">
+				<input type="text" class="form-control" name="oprice"  id="oprice" placeholder="oprice" th:value="${order.oprice}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="odate" class="col-sm-2 control-label">订单时间</label>
+			<div class="col-sm-10">
+				<input type="date" class="form-control" name="odate"  id="odate" placeholder="odate" th:value="${order.odate}"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="zfid" class="col-sm-2 control-label">支付类型</label>
+			<div class="col-sm-10">
+				<select  class="form-control" name="zfid"  id="zfid" placeholder="zfid" th:value="${order.zfid}">
+					<option  value="0">请选择</option>
+					<option th:selected="${order.zfid==1}" value="1">微信</option>
+					<option th:selected="${order.zfid==2}" value="2">支付宝</option>
+					<option th:selected="${order.zfid==3}" value="3">银行</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<input type="submit" value="Submit" class="btn btn-info" />
+				<a th:href="@{/orderList}" class="btn btn-info">Back</a>
+			</div>
+		</div>
+	</form>
+</div>
+</body>
+</html>

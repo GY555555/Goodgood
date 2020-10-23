@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.gy.dao.EmpMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.gy.pojo.Emp" >
+    <id column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="edept" property="edept" jdbcType="INTEGER" />
+    <result column="cdate" property="cdate" jdbcType="VARCHAR" />
+    <result column="egw" property="egw" jdbcType="VARCHAR" />
+    <result column="ezz" property="ezz" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    eid, ename, edept, cdate, egw, ezz
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_emp
+    where eid = #{eid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_emp
+    where eid = #{eid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jk.gy.pojo.Emp" >
+    insert into t_emp (eid, ename, edept, 
+      cdate, egw, ezz)
+    values (#{eid,jdbcType=INTEGER}, #{ename,jdbcType=VARCHAR}, #{edept,jdbcType=INTEGER}, 
+      #{cdate,jdbcType=VARCHAR}, #{egw,jdbcType=VARCHAR}, #{ezz,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.gy.pojo.Emp" >
+    insert into t_emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="ename != null" >
+        ename,
+      </if>
+      <if test="edept != null" >
+        edept,
+      </if>
+      <if test="cdate != null" >
+        cdate,
+      </if>
+      <if test="egw != null" >
+        egw,
+      </if>
+      <if test="ezz != null" >
+        ezz,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="ename != null" >
+        #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="edept != null" >
+        #{edept,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        #{cdate,jdbcType=VARCHAR},
+      </if>
+      <if test="egw != null" >
+        #{egw,jdbcType=VARCHAR},
+      </if>
+      <if test="ezz != null" >
+        #{ezz,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.gy.pojo.Emp" >
+    update t_emp
+    <set >
+      <if test="ename != null" >
+        ename = #{ename,jdbcType=VARCHAR},
+      </if>
+      <if test="edept != null" >
+        edept = #{edept,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        cdate = #{cdate,jdbcType=VARCHAR},
+      </if>
+      <if test="egw != null" >
+        egw = #{egw,jdbcType=VARCHAR},
+      </if>
+      <if test="ezz != null" >
+        ezz = #{ezz,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.gy.pojo.Emp" >
+    update t_emp
+    set ename = #{ename,jdbcType=VARCHAR},
+      edept = #{edept,jdbcType=INTEGER},
+      cdate = #{cdate,jdbcType=VARCHAR},
+      egw = #{egw,jdbcType=VARCHAR},
+      ezz = #{ezz,jdbcType=VARCHAR}
+    where eid = #{eid,jdbcType=INTEGER}
+  </update>
+
+  <select id="empList" resultMap="BaseResultMap">
+	  	select * from t_emp e left join t_dept d on e.edept=d.did
+  </select>
+
+</mapper>
